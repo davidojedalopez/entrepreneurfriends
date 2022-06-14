@@ -1,12 +1,113 @@
 <!doctype html>
-<html lang="es" class="relative h-full">
+<html lang="es" class="relative h-screen">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hey!</title>
     <link rel="stylesheet" type="text/css" href="{{ '/styles/index.css' | url }}" >
   </head>
-  <body>
-    <h1 class="text-center text-6xl">Hey!</h1>
+  <body class="h-screen">
+    <div class="bg-white">
+      <div class="max-w-7xl mx-auto py-8 px-4 sm:py-14 sm:px-6 lg:px-8 lg:flex lg:justify-between">
+        <div class="max-w-xl">
+          <h2 class="text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">Compra local</h2>
+          <p class="mt-5 text-xl text-gray-500">Encuentra lo que necesitas y ayuda a tu comunidad, <span class="font-bold">¡todos ganan!</span></p>
+          <p class="mt-5 text-xl text-gray-500">Esto es una simple lista de los negocios de nuestra comunidad. Nuestro objetivo es darles visibilidad para que más personas disfruten de sus productos y servicios.</p>
+        </div>        
+      </div>
+    </div>
+
+    {% set businesses = collections.businesses %}  
+    <div class="bg-white pb-20 px-4 sm:px-6 lg:pb-28 lg:px-8">
+      <div class="relative max-w-lg mx-auto divide-y-2 divide-gray-200 lg:max-w-7xl">    
+        <div class="mt-6 grid gap-8 pt-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-12">
+          {% for business in businesses %}
+            <div>
+{#               <div>
+                <a href="#" class="inline-block">
+                  <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> Article </span>
+                </a>
+              </div> #}
+              <div class="mt-6 flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                  <div>
+                    <span class="sr-only">{{ business.data.owner }}</span>
+                    <img class="h-16 w-16 rounded-full" src="{{ business.data.img }}" alt="">
+                  </div>
+                </div>
+                <div class="flex flex-col">
+                  <p class="text-xl font-semibold text-gray-900">{{ business.data.name }}</p>
+                  <p class="text-xs">por {{ business.data.owner }}</p>
+                </div>
+              </div>
+              <p class="mt-3 text-base text-gray-500">{{ business.data.description }}</p>
+
+              <div class="mt-6 flex items-center">
+                <div class="flex space-x-4 place-items-center">
+                  {% if business.data.twitter %}
+                    <a href="{{ business.data.twitter }}" class="no-underline hover:animate-scaleUp">
+                      <span class="sr-only">Enlace a cuenta de {{ business.data.name }} en Twitter</span>
+                      <svg class="fill-current text-twitter w-8 h-8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="45"	viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>	<g>		<path d="M512,97.248c-19.04,8.352-39.328,13.888-60.48,16.576c21.76-12.992,38.368-33.408,46.176-58.016			c-20.288,12.096-42.688,20.64-66.56,25.408C411.872,60.704,384.416,48,354.464,48c-58.112,0-104.896,47.168-104.896,104.992			c0,8.32,0.704,16.32,2.432,23.936c-87.264-4.256-164.48-46.08-216.352-109.792c-9.056,15.712-14.368,33.696-14.368,53.056			c0,36.352,18.72,68.576,46.624,87.232c-16.864-0.32-33.408-5.216-47.424-12.928c0,0.32,0,0.736,0,1.152			c0,51.008,36.384,93.376,84.096,103.136c-8.544,2.336-17.856,3.456-27.52,3.456c-6.72,0-13.504-0.384-19.872-1.792			c13.6,41.568,52.192,72.128,98.08,73.12c-35.712,27.936-81.056,44.768-130.144,44.768c-8.608,0-16.864-0.384-25.12-1.44			C46.496,446.88,101.6,464,161.024,464c193.152,0,298.752-160,298.752-298.688c0-4.64-0.16-9.12-0.384-13.568			C480.224,136.96,497.728,118.496,512,97.248z"/>	</g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </a>
+                  {% endif %}
+                  {% if business.data.website %}
+                    <a href="{{ business.data.website }}" class="no-underline hover:animate-scaleUp text-gray-500">
+                      <span class="sr-only">Sitio web de {{ business.data.name }}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                      </svg>
+                    </a>
+                  {% endif %}
+                  {% if business.data.instagram %}
+                    <a href="{{ business.data.instagram }}" class="no-underline hover:animate-scaleUp text-gray-500">
+                      <span class="sr-only">Instagram de {{ business.data.name }}</span>
+                      <?xml version="1.0" encoding="iso-8859-1"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" class="w-8 h-8" viewBox="0 0 551.034 551.034" style="enable-background:new 0 0 551.034 551.034;" xml:space="preserve"><g id="XMLID_13_">			<linearGradient id="XMLID_2_" gradientUnits="userSpaceOnUse" x1="275.517" y1="4.5714" x2="275.517" y2="549.7202" gradientTransform="matrix(1 0 0 -1 0 554)">		<stop  offset="0" style="stop-color:#E09B3D"/>		<stop  offset="0.3" style="stop-color:#C74C4D"/>		<stop  offset="0.6" style="stop-color:#C21975"/>		<stop  offset="1" style="stop-color:#7024C4"/>	</linearGradient>	<path id="XMLID_17_" style="fill:url(#XMLID_2_);" d="M386.878,0H164.156C73.64,0,0,73.64,0,164.156v222.722		c0,90.516,73.64,164.156,164.156,164.156h222.722c90.516,0,164.156-73.64,164.156-164.156V164.156		C551.033,73.64,477.393,0,386.878,0z M495.6,386.878c0,60.045-48.677,108.722-108.722,108.722H164.156		c-60.045,0-108.722-48.677-108.722-108.722V164.156c0-60.046,48.677-108.722,108.722-108.722h222.722		c60.045,0,108.722,48.676,108.722,108.722L495.6,386.878L495.6,386.878z"/>			<linearGradient id="XMLID_3_" gradientUnits="userSpaceOnUse" x1="275.517" y1="4.5714" x2="275.517" y2="549.7202" gradientTransform="matrix(1 0 0 -1 0 554)">		<stop  offset="0" style="stop-color:#E09B3D"/>		<stop  offset="0.3" style="stop-color:#C74C4D"/>		<stop  offset="0.6" style="stop-color:#C21975"/>		<stop  offset="1" style="stop-color:#7024C4"/>	</linearGradient>	<path id="XMLID_81_" style="fill:url(#XMLID_3_);" d="M275.517,133C196.933,133,133,196.933,133,275.516		s63.933,142.517,142.517,142.517S418.034,354.1,418.034,275.516S354.101,133,275.517,133z M275.517,362.6		c-48.095,0-87.083-38.988-87.083-87.083s38.989-87.083,87.083-87.083c48.095,0,87.083,38.988,87.083,87.083		C362.6,323.611,323.611,362.6,275.517,362.6z"/>			<linearGradient id="XMLID_4_" gradientUnits="userSpaceOnUse" x1="418.306" y1="4.5714" x2="418.306" y2="549.7202" gradientTransform="matrix(1 0 0 -1 0 554)">		<stop  offset="0" style="stop-color:#E09B3D"/>		<stop  offset="0.3" style="stop-color:#C74C4D"/>		<stop  offset="0.6" style="stop-color:#C21975"/>		<stop  offset="1" style="stop-color:#7024C4"/>	</linearGradient>	<circle id="XMLID_83_" style="fill:url(#XMLID_4_);" cx="418.306" cy="134.072" r="34.149"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </a>
+                  {% endif %}
+                  {% if business.data.facebook %}
+                    <a href="{{ business.data.facebook }}" class="no-underline hover:animate-scaleUp text-gray-500">
+                      <span class="sr-only">Facebook de {{ business.data.name }}</span>
+                      <?xml version="1.0" encoding="utf-8"?>
+                      <!-- Generator: Adobe Illustrator 24.3.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+                      <svg class="h-8 w-8" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                      <style type="text/css">
+                        .st0{fill:#1877F2;}
+                        .st1{fill:#FFFFFF;}
+                      </style>
+                      <g id="XMLID_17_">
+                        <path id="XMLID_22_" class="st0" d="M512,256C512,114.6,397.4,0,256,0S0,114.6,0,256c0,127.8,93.6,233.7,216,252.9V330.1h-64.9V256
+                          H216v-56.4c0-64.1,38.2-99.6,96.6-99.6c28.1,0,57.4,5,57.4,5v63h-32.3c-31.8,0-41.7,19.8-41.7,40v48h71l-11.4,74.1h-59.6v178.8
+                          C418.4,489.7,512,383.8,512,256z"/>
+                        <path id="XMLID_18_" class="st1" d="M355.6,330.1L367,256h-71v-48c0-20.2,10-40,41.7-40h32.3v-63c0,0-29.3-5-57.4-5
+                          c-58.5,0-96.6,35.5-96.6,99.6V256h-64.9v74.1h64.9v178.8c13,2.1,26.4,3.1,40,3.1c13.6,0,26.9-1.1,40-3.1V330.1H355.6z"/>
+                      </g>
+                      </svg>
+                    </a>
+                  {% endif %}
+                  {% if business.data.email %}
+                    <a href="mailto:{{ business.data.email }}" class="no-underline hover:animate-scaleUp text-gray-500">
+                      <span class="sr-only">Instagram de {{ business.data.name }}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                    </a>
+                  {% endif %}
+                  {% if business.data.whatsapp %}
+                    <a href="{{ business.data.whatsapp }}" class="no-underline hover:animate-scaleUp text-gray-500">
+                      <span class="sr-only">Whatsapp de {{ business.data.name }}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" aria-label="WhatsApp" role="img" viewBox="0 0 512 512"><rect width="512" height="512" rx="15%" fill="#25d366"/><path fill="#25d366" stroke="#fff" stroke-width="26" d="M123 393l14-65a138 138 0 1150 47z"/><path fill="#fff" d="M308 273c-3-2-6-3-9 1l-12 16c-3 2-5 3-9 1-15-8-36-17-54-47-1-4 1-6 3-8l9-14c2-2 1-4 0-6l-12-29c-3-8-6-7-9-7h-8c-2 0-6 1-10 5-22 22-13 53 3 73 3 4 23 40 66 59 32 14 39 12 48 10 11-1 22-10 27-19 1-3 6-16 2-18"/></svg>
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>      
+          {% endfor %}  
+        </div>
+      </div>
+    </div>
+    <footer class="sticky top-[100vh] p-4">
+      <p class="text-gray-500">Hecho con mucho ☕ por David y Arturo Ojeda. Si quieres formar parte de esta página, llena este formulario.</p>
+    </footer>
   </body>
 </html>
