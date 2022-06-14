@@ -4,4 +4,5 @@ description: Venta de artículos personalizados con vinil textil, serigrafía, s
 owner: Oscar Cázares
 facebook: fb.com/StickyCln
 instagram: instagram.com/StickyCln
+img: /assets/images/sticky.jpeg
 ---

@@ -1,6 +1,6 @@
 ---
-name: "Perro Dinero"
-description: "Blog de finanzas personales para ayudarte a alcanzar la tranquilidad financiera."
+name: Perro Dinero
+description: Blog y asesoría gratuita de finanzas personales. Alcanza la tranquilidad financiera y disfruta la vida.
 owner: David Ojeda
 twitter: https://twitter.com/PerroDinero
 website: https://perrodinero.blog/
