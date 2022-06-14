@@ -4,4 +4,5 @@ description: Despacho de arquitectura y construcci√≥n enfocados en la realizaci√
 owner: Samuel Rodriguez
 whatsapp: https://web.whatsapp.com/send?phone=6674510151
 instagram: https://instagram.com/Sarc_arquitectos?r=nametag
+img: /assets/images/sarc.jpg
 ---
